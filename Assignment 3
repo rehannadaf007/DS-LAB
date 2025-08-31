@@ -1,0 +1,49 @@
+undo = [] 
+redo = [] 
+def makechange(): 
+    print("Enter the data") 
+    text = input() 
+    undo.append(text) 
+    redo.clear() 
+    display_state() 
+     
+def undo_action(): 
+    if undo: 
+        X=undo.pop() 
+    else: 
+        print("Undo action is not possible") 
+    redo.append(X) 
+         
+def redo_action(): 
+    if redo: 
+     X = redo.pop() 
+    else: 
+        print("Redo action is not possible") 
+        return 
+    undo.append(X) 
+     
+def display_state():
+    print("Current Document State: " + ", ".join(undo)) 
+     
+while True: 
+    print("\n--- MENU ---") 
+    print("1.Make a Change") 
+    print("2.Undo") 
+    print("3.Redo") 
+    print("4.Display Document State") 
+    print("5.Exit") 
+    choice = input("Enter your choice: ") 
+ 
+    if choice == '1': 
+        makechange() 
+    elif choice == '2': 
+        undo_action() 
+    elif choice == '3': 
+        redo_action() 
+    elif choice == '4':
+        display_state() 
+    elif choice == '5': 
+        print("Exiting...") 
+        break 
+    else: 
+        print("Invalid choice. Try again.")
